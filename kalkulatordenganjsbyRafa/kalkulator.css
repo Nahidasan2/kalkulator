@@ -1,0 +1,39 @@
+body{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    background: url('../pemandangan.jpg');
+    background-size: 1000px;
+    background-repeat: no-repeat;
+}
+input[type="text"]{
+    width: 150px;
+    height: 50px;
+    font-size: 25px;
+    background: transparent;
+    color: white;
+}
+input[type="button"]{
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    color: white;
+}
+.Kalkulator {
+    justify-content: center;
+    background: transparent;
+    border-radius: 10px;
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 10px 10px rgba(183, 0, 255, 0.2); 
+    padding: 20px;
+    width: 220px; 
+}
+input[value="="]{
+    width: 213px;
+}
+input[value="00"]{
+    width: 105px;
+}
+input[type="button"]:hover {
+background-color: rgba(0, 167, 179, 0.8);
+}

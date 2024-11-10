@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="kalkulator.css">
+</head>
+<body>
+    <div class="Kalkulator">
+        <input type="text" id="display">
+        <input type="button" value="DEL" onclick="deleteone()" class="deleteone">
+        <input type="button" value="C" onclick="deleteall()">
+        <input type="button" value="7" onclick="tampilkan('7')">
+        <input type="button" value="8" onclick="tampilkan('8')">
+        <input type="button" value="9" onclick="tampilkan('9')">
+        <input type="button" value="/" onclick="tampilkan('/')">
+        <input type="button" value="4" onclick="tampilkan('4')">
+        <input type="button" value="5" onclick="tampilkan('5')">
+        <input type="button" value="6" onclick="tampilkan('6')">
+        <input type="button" value="x" onclick="tampilkan('x')">
+        <input type="button" value="1" onclick="tampilkan('1')">
+        <input type="button" value="2" onclick="tampilkan('2')">
+        <input type="button" value="3" onclick="tampilkan('3')">
+        <input type="button" value="+" onclick="tampilkan('+')">
+        <input type="button" value="-" onclick="tampilkan('-')">
+        <input type="button" value="0" onclick="tampilkan('0')">
+        <input type="button" value="^" onclick="tampilkan('^')">
+        <input type="button" value="." onclick="tampilkan('.')">
+        <input type="button" value="%" onclick="persen()">
+        <input type="button" value="00" onclick="tampilkan('00')">
+        <input type="button" value="=" onclick="hasil()">
+    </div>
+</body>
+<script>
+    function tampilkan(value){
+        display = document.getElementById('display');
+        display.value += value;
+    }
+    function operator(value){
+        display = document.getElementById('display');
+        display.value += value;
+    }
+    function deleteone(){
+        display = document.getElementById('display');
+        display.value = display.value.slice(0, -1)
+    }
+    function deleteall(){
+        display = document.getElementById('display');
+        display.value = ('');
+    }
+    function persen() {
+        let display = document.getElementById('display');
+        let currentValue = display.value;
+    
+        if (currentValue) {
+            display.value += '%';
+        }
+    }
+    
+        function hasil() {
+        let display = document.getElementById('display');
+        let expression = display.value;
+        expression = expression.replace(/x/g, '*').replace(/\^/g, '**');
+        expression = expression.replace(/(\d+)%/g, '($1 / 100)');
+        try {
+            display.value = eval(expression);
+        } catch (error) {
+            display.value = 'Error';
+        }
+    }
+</script>
+</html>
