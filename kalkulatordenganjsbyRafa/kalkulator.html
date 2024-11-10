@@ -61,6 +61,7 @@
         function hasil() {
         let display = document.getElementById('display');
         let expression = display.value;
+        expression = expression.replace(/÷/g, '/');
         expression = expression.replace(/x/g, '*').replace(/\^/g, '**');
         expression = expression.replace(/(\d+)%/g, '($1 / 100)');
         try {
