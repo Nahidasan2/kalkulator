@@ -14,18 +14,18 @@
         <input type="button" value="7" onclick="tampilkan('7')">
         <input type="button" value="8" onclick="tampilkan('8')">
         <input type="button" value="9" onclick="tampilkan('9')">
-        <input type="button" value="/" onclick="operator('/')">
+        <input type="button" value="÷" onclick="tampilkan('÷')">
         <input type="button" value="4" onclick="tampilkan('4')">
         <input type="button" value="5" onclick="tampilkan('5')">
         <input type="button" value="6" onclick="tampilkan('6')">
-        <input type="button" value="x" onclick="operator('x')">
+        <input type="button" value="x" onclick="tampilkan('x')">
         <input type="button" value="1" onclick="tampilkan('1')">
         <input type="button" value="2" onclick="tampilkan('2')">
         <input type="button" value="3" onclick="tampilkan('3')">
-        <input type="button" value="+" onclick="operator('+')">
-        <input type="button" value="-" onclick="operator('-')">
+        <input type="button" value="+" onclick="tampilkan('+')">
+        <input type="button" value="-" onclick="tampilkan('-')">
         <input type="button" value="0" onclick="tampilkan('0')">
-        <input type="button" value="^" onclick="operator('^')">
+        <input type="button" value="^" onclick="tampilkan('^')">
         <input type="button" value="." onclick="tampilkan('.')">
         <input type="button" value="%" onclick="persen()">
         <input type="button" value="00" onclick="tampilkan('00')">
@@ -62,7 +62,14 @@
         let display = document.getElementById('display');
         let expression = display.value;
         expression = expression.replace(/÷/g, '/');
-        expression = expression.replace(/x/g, '*').replace(/\^/g, '**');
+        expression = expression.replace(/\^/g, '**');
+        expression = expression.replace(/x/g, '*');
+
+         // Mengubah format persentase agar bilangan persentase dikalikan dengan bilangan sebelumnya untuk semua operator
+         expression = expression.replace(/(\d+(\.\d+)?)(\+|\-|\*|\/)(\(\d+(\.\d+)? \/ 100\))/g, (match, p1, _, operator, p2) => {
+            return `${p1}${operator}(${p1} * ${p2})`;
+         });
+         
         expression = expression.replace(/(\d+)%/g, '($1 / 100)');
         try {
             display.value = eval(expression);
