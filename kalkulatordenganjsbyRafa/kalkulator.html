@@ -35,7 +35,7 @@
     let isResultDisplayed = false;
 
     function tampilkan(value) {
-    const display = document.getElementById('display');
+    display = document.getElementById('display');
     
     // Jika hasil sudah ditampilkan dan input bukan operator, reset display
     if (isResultDisplayed && !['+', '-', 'x', '÷', '^', '%'].includes(value)) {
