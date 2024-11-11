@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator</title>
-    <link rel="stylesheet" href="kalkulator.css">
+    <title>Document</title>
 </head>
 <body>
     <div class="Kalkulator">
@@ -33,47 +32,61 @@
     </div>
 </body>
 <script>
+    let isResultDisplayed = false;
+
     function tampilkan(value){
         display = document.getElementById('display');
+        if (isResultDisplayed) {
+            display.value = '';  // Reset display jika hasil sudah ditampilkan
+            isResultDisplayed = false;
+        }
         display.value += value;
     }
+
     function operator(value){
         display = document.getElementById('display');
         display.value += value;
+        isResultDisplayed = false;
     }
+
     function deleteone(){
         display = document.getElementById('display');
-        display.value = display.value.slice(0, -1)
+        display.value = display.value.slice(0, -1);
+        isResultDisplayed = false;
     }
+
     function deleteall(){
         display = document.getElementById('display');
-        display.value = ('');
+        display.value = '';
+        isResultDisplayed = false;
     }
-    function persen() {
-        let display = document.getElementById('display');
-        let currentValue = display.value;
-    
-        if (currentValue) {
+
+    function persen(){
+        display = document.getElementById('display');
+        currentValue = display.value;
+
+        if (currentValue){
             display.value += '%';
         }
     }
-    
-        function hasil() {
-        let display = document.getElementById('display');
-        let expression = display.value;
+
+    function hasil(){
+        display = document.getElementById('display');
+        expression = display.value;
+
+        expression = expression.replace(/x/g, '*');
         expression = expression.replace(/÷/g, '/');
         expression = expression.replace(/\^/g, '**');
-        expression = expression.replace(/x/g, '*');
-
          // Mengubah format persentase agar bilangan persentase dikalikan dengan bilangan sebelumnya untuk semua operator
          expression = expression.replace(/(\d+(\.\d+)?)(\+|\-|\*|\/)(\(\d+(\.\d+)? \/ 100\))/g, (match, p1, _, operator, p2) => {
             return `${p1}${operator}(${p1} * ${p2})`;
          });
          
         expression = expression.replace(/(\d+)%/g, '($1 / 100)');
-        try {
+        try{
             display.value = eval(expression);
-        } catch (error) {
+            isResultDisplayed = true;
+        } catch {
             display.value = 'Error';
         }
     }
