@@ -2,7 +2,7 @@ body{
     display: flex;
     justify-content: center;
     margin-top: 100px;
-    background: url('../pemandangan.jpg');
+    background: black;
     background-size: 1000px;
     background-repeat: no-repeat;
 }
