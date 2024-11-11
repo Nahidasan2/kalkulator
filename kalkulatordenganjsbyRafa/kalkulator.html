@@ -36,13 +36,16 @@
 
     function tampilkan(value) {
     const display = document.getElementById('display');
-    if (isResultDisplayed) {
-        // Jika hasil sudah ditampilkan dan input berikutnya adalah angka, reset display
-        if (!isNaN(value)) {
-            display.value = ''; 
-        }
-        isResultDisplayed = false;
+    
+    // Jika hasil sudah ditampilkan dan input bukan operator, reset display
+    if (isResultDisplayed && !['+', '-', 'x', '÷', '^', '%'].includes(value)) {
+        display.value = '';
     }
+    
+    // Set `isResultDisplayed` ke false jika input baru
+    isResultDisplayed = false;
+    
+    // Tambahkan nilai ke display
     display.value += value;
 }
 
